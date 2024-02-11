@@ -1,3 +1,6 @@
+print('Welcome to the Text Parser')
+print()
+
 text = input('Enter your text: ')
 text = text.lower() # To account for upper and lower letters
 text2 = text # To be able to get the letter counts
@@ -10,22 +13,25 @@ letter3 = letter3.lower()
 
 print()#readability
 
+print('How many times do your random letters appear in your text?')
 text2 = list(text2) #counting the letters
 print("Letter", letter1, "= ", text2.count(letter1), '\n'"Letter", letter2, "= ", text2.count(letter2), '\n'"Letter", letter3, '= ', text2.count(letter3))
 
+print()
 text = list(text.split()) # To get a word count
 text_length = len(text)
-print("Total number of words:", text_length)
+print("Total number of words in your text = ",text_length)
 print()
 
-first = text[0] #indexing the first and last word
-last = text[-1]
-print("First word:", first +'\n'"Last word: " + last)
+first = text2[0] #indexing the first and last word
+last = text2[-1]
+print(f"The first letter in your text is '{first}' and the last letter in your text is '{last}'")
 print()
 
-print("Reversed text: ", end='') #reversing the text
-print(" ".join(text[::-1]))
+print("If you reversed your text is would read: ") #reversing the text
+print('"', end="")
+print(" ".join(text[::-1]), end="")
+print('"')
+
 print()
-
-
 print('"Python" is in the text, True or False = ', ("python" in text))
