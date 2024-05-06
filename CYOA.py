@@ -69,7 +69,7 @@ def winner():
 
 print("Welcome to the Wild Wood, choose your own adventure! \n")
 print('''Venture forth into the perilous depths of the 'Wild Wood' where a fearsome dragon has seized a wagon laden 
-with gold destined for the castle. Ton compound matters, the princess herself was traveling with the wagon and has
+with gold destined for the castle. To compound matters, the princess herself was traveling with the wagon and has
 fallen into the clutches of the beast. Your quest awaits: to vanquish the dragon, rescue the princess, and reclaim the
 riches!\n''')
 print('''Will you rise to the challenge, brave the terrors of the woods, confront the dragon, and liberate both princess
