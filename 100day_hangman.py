@@ -1,95 +1,86 @@
 import random
+from hangman_words import word_list
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
 
-word_list = ["aardvark", "baboon", "camel", "sanctuary", "letter", "pierce", "shine", "crowd", "useful", "entry", "discount", "descent", "triangle", "violation", "pneumonia", "tension", "equate", "extraordinary", "random", "treasure"]
-
-def art():
-    if chances == 6:
-        print(''' 
-
-                      |   
-                      |  
-                      | 
-                      | 
-                      | 
-                      |_____
-                         ''')
-    elif chances == 5:
-        print(''' 
-                      ____
-                      |   
-                      |  
-                      | 
-                      | 
-                      | 
-                      |_____
-                         ''')
-    elif chances == 4:
-        print(''' 
-                      ____
-                      |  | 
-                      | 
-                      | 
-                      | 
-                      | 
-                      |_____
-                         ''')
-    elif chances == 3:
-        print(''' 
-                      ____
-                      |  | 
-                      |  O
-                      | 
-                      | 
-                      | 
-                      |_____
-                         ''')
-    elif chances == 2:
-        print(''' 
-                      ____
-                      |  | 
-                      |  O
-                      | \\ /
-                      |  
-                      | 
-                      |_____
-                         ''')
-    elif chances == 1:
-        print(''' 
-                      ____
-                      |  | 
-                      |  O
-                      | \\ /
-                      |  |
-                      | 
-                      |_____
-                         ''')
-    elif chances == 0:
-        print(f'\nSorry, you lose. The word was: {chosen_word}')
-        print(''' 
-                  ____
-                  |  | 
-                  |  O
-                  | \\ /
-                  |  |
-                  | / \\
-                  |_____
-                     ''')
-
-
+logo = ''' 
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \\ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|
+                    __/ |                      
+                   |___/    '''
 chosen_word = random.choice(word_list)
+word_length = len(chosen_word)
 display = []
 letters = []
 
 for _ in chosen_word:
     letters.append(_)
-for _ in chosen_word:
+for _ in range(word_length):
     display += "_"
 
-for _ in display:
-    print(_, end=' ')
+# for _ in display:
+#     print(_, end=' ')
 guesses = []
 chances = 6
-
+print(logo)
 while chances > 0:
 
     guess = input('\nChoose a letter: ').lower()
@@ -98,7 +89,7 @@ while chances > 0:
         chances -= 0
 
     guesses.append(guess)
-    for pos in range(len(chosen_word)):
+    for pos in range(word_length):
         char = chosen_word[pos]
         if char == guess:
             display[pos] = char
@@ -108,7 +99,9 @@ while chances > 0:
         break
     elif guess not in chosen_word:
         chances -= 1
+    if chances == 0:
+        print(f'\nSorry, you lose. The word was: {chosen_word}')
 
-    print(f'You already chose these letters: {guesses}\n')
-    print(f'Word to guess: {display}')
-    art()
+    print(f'You have chosen these letters: {guesses}\n')
+    print(f'Word to guess: {' '.join(display)}')
+    print(stages[chances])
